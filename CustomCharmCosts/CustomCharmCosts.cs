@@ -5,7 +5,7 @@ using System.Reflection;
 namespace CustomCharmCosts
 {
     [UsedImplicitly]
-    public class CustomCharmCosts : Mod, ITogglableMod, IGlobalSettings<GlobalModSettings>
+    public class CustomCharmCosts : Mod, IGlobalSettings<GlobalModSettings>
     {
         public CustomCharmCosts() : base("Custom Charm Costs") { }
 
