@@ -1,3 +1,3 @@
-# Hell Mod
+# Custom Charm Costs
 
-A tiny mod I made a long time ago. Nerfs your damage, soul, and healing while increasing incoming damage. Configurable via a settings file.
+Rebalances some of the Hollow Knight charm costs with a config file.
