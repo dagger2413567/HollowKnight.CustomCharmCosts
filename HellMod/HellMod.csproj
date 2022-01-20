@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net47</TargetFramework>
     <AssemblyTitle>CustomCharmCosts</AssemblyTitle>
-    <Product>HellMod</Product>
-    <Copyright>Copyright ©  2017</Copyright>
+    <Product>CustomCharmCosts</Product>
+    <Copyright>Copyright ©  2022</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <LangVersion>latest</LangVersion>
     <DebugType>portable</DebugType>
