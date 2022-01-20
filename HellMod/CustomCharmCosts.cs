@@ -33,14 +33,14 @@ namespace CustomCharmCosts
         private int OnInt(string intName, int orig) => intName switch
         {
             // Gathering, Wayfayers, Soul Catcher, Soul Eater, Dashmaster, Quick Slash, SprintMaster, Grimmchild
-            "charmCost_01" => 0,
-            "charmCost_02" => 0,
-            "charmCost_20" => 1,
-            "charmCost_21" => 3,
-            "charmCost_31" => 1,
-            "charmCost_32" => 1,
-            "charmCost_37" => 0,
-            "charmCost_40" => 1,
+            "charmCost_01" => _settings.GSwarmCost,
+            "charmCost_02" => _settings.WayfairerCost,
+            "charmCost_20" => _settings.CatcherCost,
+            "charmCost_21" => _settings.EaterCost,
+            "charmCost_31" => _settings.DashmasterCost,
+            "charmCost_32" => _settings.QuickCost,
+            "charmCost_37" => _settings.SprintCost,
+            "charmCost_40" => _settings.GrimmCost,
 
             _ => orig
         };
