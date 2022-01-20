@@ -26,21 +26,21 @@ namespace CustomCharmCosts
         public override void Initialize()
         {
             Log("Initializing");
-
+            
             ModHooks.GetPlayerIntHook += OnInt;
-            ModHooks.NewGameHook += OnNewGame;
-            ModHooks.SavegameLoadHook += OnSaveLoaded;
         }
 
         private int OnInt(string intName, int orig) => intName switch
         {
-            // Gathering, Wayfayers, Quick Slash, SprintMaster
+            // Gathering, Wayfayers, Soul Catcher, Soul Eater, Dashmaster, Quick Slash, SprintMaster, Grimmchild
             "charmCost_01" => 0,
             "charmCost_02" => 0,
             "charmCost_20" => 1,
             "charmCost_21" => 3,
+            "charmCost_31" => 1,
             "charmCost_32" => 1,
             "charmCost_37" => 0,
+            "charmCost_40" => 1,
 
             _ => orig
         };
@@ -48,8 +48,6 @@ namespace CustomCharmCosts
         public void Unload()
         {
             ModHooks.GetPlayerIntHook -= OnInt;
-            ModHooks.NewGameHook -= OnNewGame;
-            ModHooks.SavegameLoadHook -= OnSaveLoaded;
         }
     }
 }
