@@ -8,12 +8,12 @@ using JetBrains.Annotations;
 using Modding;
 using UnityEngine;
 
-namespace HellMod
+namespace CustomCharmCosts
 {
     [UsedImplicitly]
-    public class HellMod : Mod, ITogglableMod, IGlobalSettings<GlobalModSettings>
+    public class CustomCharmCosts : Mod, ITogglableMod, IGlobalSettings<GlobalModSettings>
     {
-        public HellMod() : base("Hell Mod") { }
+        public CustomCharmCosts() : base("Custom Charm Costs") { }
 
         private GlobalModSettings _settings = new();
 
@@ -27,65 +27,20 @@ namespace HellMod
         {
             Log("Initializing");
 
-            ModHooks.TakeHealthHook += OnHealthTaken;
-            ModHooks.SoulGainHook += OnSoulGain;
             ModHooks.GetPlayerIntHook += OnInt;
             ModHooks.NewGameHook += OnNewGame;
             ModHooks.SavegameLoadHook += OnSaveLoaded;
-            ModHooks.HitInstanceHook += OnHit;
-        }
-
-        private HitInstance OnHit(Fsm owner, HitInstance hit)
-        {
-            switch (hit.AttackType)
-            {
-                case AttackTypes.Nail when _settings.LimitNail:
-                    hit.DamageDealt /= 2;
-                    break;
-                
-                case AttackTypes.Spell when _settings.LimitSpells:
-                    hit.DamageDealt = 5 * hit.DamageDealt / 6;
-                    break;
-            }
-
-            return hit;
-        }
-
-        private void OnNewGame() => OnSaveLoaded();
-
-        private void OnSaveLoaded(int id = -1) => GameManager.instance.StartCoroutine(LimitFocus());
-
-        private IEnumerator LimitFocus()
-        {
-            if (!_settings.LimitFocus)
-                yield break;
-
-            yield return new WaitWhile(() => HeroController.instance == null);
-
-            PlayMakerFSM sc = HeroController.instance.spellControl;
-
-            // This is the state which actually changes the speed of focusing
-            FsmState state = sc.FsmStates.First(x => x.Name == "Deep Focus Speed");
-
-            // And this is the factor which it multiplies by
-            FsmFloat deepScalar = state.Actions.OfType<FloatMultiply>().First().multiplyBy;
-
-            // Make all healing slower by the factor of deep focus
-            // So that normal healing is deep focus speed.
-            sc.Fsm.GetFsmFloat("Time Per MP Drain UnCH").Value *= deepScalar.Value;
-            sc.Fsm.GetFsmFloat("Time Per MP Drain CH").Value *= deepScalar.Value;
-            deepScalar.Value *= deepScalar.Value;
         }
 
         private int OnInt(string intName, int orig)
         {
             return intName switch
             {
-                "maxMP" when _settings.LimitSoulCapacity => PlayerData.instance.maxMP / 3,
-                "MPReserveMax" when _settings.LimitSoulCapacity => PlayerData.instance.MPReserveMax / 3,
-
                 // Dreamshield
-                "charmCost_38" => 1,
+                "charmCost_01" => 0,
+                "charmCost_02" => 0,
+                "charmCost_01" => 0,
+                "charmCost_01" => 0,
 
                 _ => orig
             };
