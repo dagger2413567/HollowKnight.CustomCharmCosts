@@ -1,5 +1,6 @@
-﻿using Modding;
-using UnityEngine;
+﻿using JetBrains.Annotations;
+using Modding;
+using System.Reflection;
 
 namespace CustomCharmCosts
 {
