@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net47</TargetFramework>
-    <AssemblyTitle>HellMod</AssemblyTitle>
+    <AssemblyTitle>CustomCharmCosts</AssemblyTitle>
     <Product>HellMod</Product>
     <Copyright>Copyright ©  2017</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
